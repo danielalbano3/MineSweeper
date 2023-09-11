@@ -1,9 +1,11 @@
 const board = document.querySelector('#board')
 
 const grid = []
+const gRow = 20
+const gCol = 10
 
-for (let r = 1; r <= 10; r++){
-  for (let c = 1; c <= 5; c++){
+for (let r = 1; r <= gRow; r++){
+  for (let c = 1; c <= gCol; c++){
     const space = document.createElement('div')
     space.classList.add('space')
     space.addEventListener('click', e => {
@@ -24,12 +26,13 @@ for (let r = 1; r <= 10; r++){
   }
 }
 
-let mines = 10
+let size = gRow * gCol
+let mines = size * 0.2
 //choose 10 random numbers from 0 to 49
 while (mines > 0){
-  let num = Math.floor((Math.random() * 50) + 1)
+  let num = Math.floor((Math.random() * size) + 1)
   num--
-  if (mines === 10) {
+  if (mines === size * 0.2) {
     grid[num].hasMine = true
     mines--
   }
