@@ -1,0 +1,32 @@
+*, *::before, *::after{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body{
+  background: black;
+  height:100vh;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#board {
+  display: grid;
+  aspect-ratio: 1/2;
+  min-height:800px;
+  border:1px solid white;
+  grid-template: repeat(10, 1fr) / repeat(5, 1fr);
+}
+
+.space {
+  height:100%;
+  width:100%;
+  border:1px solid white;
+  color:white;
+}
+
+.mine {
+  background: red;
+}
