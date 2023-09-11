@@ -18,7 +18,6 @@ body{
   display: grid;
   aspect-ratio: 1/2;
   min-height:800px;
-  border:1px solid white;
   grid-template: repeat(var(--row), 1fr) / repeat(var(--col), 1fr);
 }
 
@@ -34,4 +33,10 @@ body{
 
 .mine {
   background: red;
+}
+
+.hidden {
+  background: #BEC8D0;
+  border-left: 3px solid #BEBFD0;
+  border-bottom: 3px solid #BEBFD0;
 }

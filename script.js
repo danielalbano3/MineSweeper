@@ -1,4 +1,5 @@
 const board = document.querySelector('#board')
+const spaces = document.querySelectorAll('.space')
 
 const grid = []
 const gRow = 20
@@ -52,38 +53,77 @@ function getCell(row,col){
 
 function countAround(row,col){
   let count = 0
-  let a = getCell(row - 1,col - 1)
-  let b = getCell(row - 1,col)
-  let c = getCell(row - 1,col + 1)
-  let d = getCell(row,col - 1)
-  let e = getCell(row,col + 1)
-  let f = getCell(row + 1,col - 1)
-  let g = getCell(row + 1,col)
-  let h = getCell(row + 1,col + 1)
+  const delta = [
+    [-1,-1],
+    [-1,0],
+    [-1,1],
+    [0,-1],
+    [0,1],
+    [1,-1],
+    [1,0],
+    [1,1]
+  ]
 
-  if (a != null){ if (a.hasMine === true) count++ }
-  if (b != null){ if (b.hasMine === true) count++ }
-  if (c != null){ if (c.hasMine === true) count++ }
-  if (d != null){ if (d.hasMine === true) count++ }
-  if (e != null){ if (e.hasMine === true) count++ }
-  if (f != null){ if (f.hasMine === true) count++ }
-  if (g != null){ if (g.hasMine === true) count++ }
-  if (h != null){ if (h.hasMine === true) count++ }
-
+  delta.forEach(d => {
+    let cell = getCell(row + d[0],col + d[1])
+    if (cell != null){
+      if (cell.hasMine === true) count++
+    }
+  })
+ 
   getCell(row,col).mineCount = count
 }
 
 grid.forEach(cell => {
   cell.count()
-  cell.hasMine ? cell.div.classList.add('mine') : cell.div.innerText = cell.mineCount
-  if (cell.div.innerText == 0) cell.div.innerText = ''
+  cell.div.classList.add('hidden')
 })
 
 
 function reveal(cell){
-  console.log(cell)
+  cell.div.classList.remove('hidden')
+  if (cell.hasMine){
+    cell.div.classList.add('mine')
+    gameOver()
+  } else {
+    cell.div.innerText = cell.mineCount
+    if (cell.div.innerText == 0){
+      cell.div.innerText = ''
+      showAdjacent(cell)
+    }  
+
+  }
+
 }
 
 function gameOver(){
-  //grid.forEach(cell => cell.showAll())
+  grid.forEach(cell => {
+    if (cell.div.classList.contains('hidden') && cell.hasMine) reveal(cell)
+  })
+}
+
+function showAdjacent(cell){
+  const row = cell.row
+  const col = cell.col
+
+  const delta = [
+    [-1,-1],
+    [-1,0],
+    [-1,1],
+    [0,-1],
+    [0,1],
+    [1,-1],
+    [1,0],
+    [1,1]
+  ]
+
+  delta.forEach(d => {
+    let cell = getCell(row + d[0],col + d[1])
+    if (cell != null){
+      if (cell.div.classList.contains('hidden')) {
+        cell.div.classList.remove('hidden')
+        reveal(cell)
+      }
+    }
+  })
 }
