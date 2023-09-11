@@ -1,5 +1,6 @@
 const board = document.querySelector('#board')
 const spaces = document.querySelectorAll('.space')
+const gg = document.querySelector('#gameover')
 
 const grid = []
 const gRow = 20
@@ -10,7 +11,6 @@ for (let r = 1; r <= gRow; r++){
     const space = document.createElement('div')
     space.classList.add('space')
     space.addEventListener('click', e => {
-      console.log(e.target)
       reveal(findCellObj(e.target))
     })
     board.appendChild(space)
@@ -98,7 +98,10 @@ function reveal(cell){
 
 function gameOver(){
   grid.forEach(cell => {
-    if (cell.div.classList.contains('hidden') && cell.hasMine) reveal(cell)
+    if (cell.div.classList.contains('hidden') && cell.hasMine) {
+      reveal(cell)
+      gg.classList.add('show')
+    }
   })
 }
 

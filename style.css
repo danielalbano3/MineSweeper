@@ -40,3 +40,23 @@ body{
   border-left: 3px solid #BEBFD0;
   border-bottom: 3px solid #BEBFD0;
 }
+
+#gameover {
+  visibility: hidden;
+  color:red;
+  position:absolute;
+  inset:0;margin:auto;
+  bottom:92%;
+  background: rgba(0,0,0,0.75);
+  aspect-ratio: 2/0.4;
+  width:200px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid orange;
+  font-size:1.8rem;
+}
+
+#gameover.show {
+  visibility:visible;
+}
