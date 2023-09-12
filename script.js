@@ -12,11 +12,8 @@ for (let r = 1; r <= gRow; r++){
   for (let c = 1; c <= gCol; c++){
     const space = document.createElement('div')
     space.classList.add('space')
-    space.addEventListener('click', e => {
-      // reveal(findCellObj(e.target))
-      // checkWin()
-      clickCell(e)
-    })
+    space.addEventListener('click', e => clickCell(e))
+    space.addEventListener('contextmenu', e => flag(e))
     board.appendChild(space)
     const cell = {
       row: r,
@@ -159,6 +156,13 @@ function gameWin(){
 
 function clickCell(event){
   if (over) return
+  if (event.target.classList.contains('flag')) return
   reveal(findCellObj(event.target))
   checkWin()
+}
+
+function flag(event) {
+  event.preventDefault()
+  const cell = event.target
+  cell.classList.contains('flag') ? cell.classList.remove('flag') : cell.classList.add('flag')
 }

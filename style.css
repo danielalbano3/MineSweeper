@@ -83,3 +83,7 @@ body.lose {
   border:transparent;
   background: linear-gradient(to right, hsl(0, 70%, 30%), black);
 }
+
+.flag {
+  background: hsl(240, 40%, 50%)
+}
