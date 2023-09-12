@@ -6,12 +6,16 @@ const grid = []
 const gRow = 20
 const gCol = 10
 
+let over = false
+
 for (let r = 1; r <= gRow; r++){
   for (let c = 1; c <= gCol; c++){
     const space = document.createElement('div')
     space.classList.add('space')
     space.addEventListener('click', e => {
-      reveal(findCellObj(e.target))
+      // reveal(findCellObj(e.target))
+      // checkWin()
+      clickCell(e)
     })
     board.appendChild(space)
     const cell = {
@@ -29,6 +33,7 @@ for (let r = 1; r <= gRow; r++){
 
 let size = gRow * gCol
 let mines = size * 0.2
+const allMines = mines
 //choose 10 random numbers from 0 to 49
 while (mines > 0){
   let num = Math.floor((Math.random() * size) + 1)
@@ -100,9 +105,12 @@ function gameOver(){
   grid.forEach(cell => {
     if (cell.div.classList.contains('hidden') && cell.hasMine) {
       reveal(cell)
-      gg.classList.add('show')
     }
   })
+  gg.classList.add('show')
+  board.classList.add('lose')
+  document.body.classList.add('lose')
+  over = true
 }
 
 function showAdjacent(cell){
@@ -129,4 +137,28 @@ function showAdjacent(cell){
       }
     }
   })
+}
+
+function checkWin(){
+  const notMines = grid.filter(cell => cell.hasMine === false && !cell.div.classList.contains('hidden'))
+  if (notMines.length === (size - allMines)) gameWin()
+  
+  const hiddenMines = grid.filter(cell => cell.hasMine === true)
+  console.log(hiddenMines)
+}
+
+function gameWin(){
+  over= true
+  board.classList.add('win')
+  document.body.classList.add('win')
+  gg.innerText = 'You Win!'
+  gg.classList.add('win')
+  gg.classList.add('show')
+  console.log('you win')
+}
+
+function clickCell(event){
+  if (over) return
+  reveal(findCellObj(event.target))
+  checkWin()
 }

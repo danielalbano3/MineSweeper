@@ -60,3 +60,26 @@ body{
 #gameover.show {
   visibility:visible;
 }
+
+#gameover.win{
+  color:greenyellow;
+  border:3px solid greenyellow;
+}
+
+.win {
+  border: 10px solid hsl(43, 80%, 80%)
+}
+
+body.win{
+  border:transparent;
+  background: linear-gradient(to left, hsl(39, 50%, 50%), hsl(51, 80%, 70%))
+}
+
+.lose {
+  border: 10px solid hsl(0, 100%, 50%)
+}
+
+body.lose {
+  border:transparent;
+  background: linear-gradient(to right, hsl(0, 70%, 30%), black);
+}
