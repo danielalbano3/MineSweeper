@@ -1,6 +1,8 @@
 const board = document.querySelector('#board')
 const spaces = document.querySelectorAll('.space')
 const gg = document.querySelector('#gameover')
+const minecounter = document.querySelector('#counter')
+const reload = document.querySelector('#reload')
 
 const grid = []
 const gRow = 20
@@ -31,7 +33,9 @@ for (let r = 1; r <= gRow; r++){
 let size = gRow * gCol
 let mines = size * 0.2
 const allMines = mines
-//choose 10 random numbers from 0 to 49
+
+minecounter.innerText = allMines
+
 while (mines > 0){
   let num = Math.floor((Math.random() * size) + 1)
   num--
@@ -141,7 +145,6 @@ function checkWin(){
   if (notMines.length === (size - allMines)) gameWin()
   
   const hiddenMines = grid.filter(cell => cell.hasMine === true)
-  console.log(hiddenMines)
 }
 
 function gameWin(){
@@ -164,5 +167,16 @@ function clickCell(event){
 function flag(event) {
   event.preventDefault()
   const cell = event.target
-  cell.classList.contains('flag') ? cell.classList.remove('flag') : cell.classList.add('flag')
+  if (!event.target.classList.contains('hidden')) return
+  let minecount = parseInt(minecounter.innerText)
+  if (cell.classList.contains('flag')){
+    cell.classList.remove('flag')
+    minecount++
+  } else {
+    cell.classList.add('flag')
+    minecount--
+  } 
+  minecounter.innerText = minecount
 }
+
+reload.addEventListener('click', () => location.reload())

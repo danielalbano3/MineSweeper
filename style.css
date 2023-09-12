@@ -67,7 +67,7 @@ body{
 }
 
 .win {
-  border: 10px solid hsl(43, 80%, 80%)
+  border: 10px solid green;
 }
 
 body.win{
@@ -86,4 +86,48 @@ body.lose {
 
 .flag {
   background: hsl(240, 40%, 50%)
+}
+
+#minecount {
+  aspect-ratio: 2/1;
+  width:150px;
+  background: black;
+  border:2px solid white;
+  color:white;
+  position:absolute;
+  inset:70px auto auto 20%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size:1.4rem;
+}
+
+#reload {
+  aspect-ratio: 2/0.8;
+  width:100px;
+  background: hsl(0, 0%, 68%);
+  border-radius: 6px;
+  font-size: 1.2rem;
+  position:absolute;
+  inset:170px auto auto 21%;
+}
+
+#reload:hover {
+  --colorpick: hsl(216, 60%, 50%);
+  color:var(--colorpick);
+  border: 3px solid var(--colorpick);
+}
+
+#howto {
+  color: white;
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: start;
+  aspect-ratio: 1.2/2;
+  height:400px;
+  position:absolute;
+  inset:22% auto auto 20%;
+  font-size: 1.2rem;
 }
