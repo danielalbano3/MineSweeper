@@ -90,6 +90,7 @@ function reveal(cell){
   cell.div.classList.remove('hidden')
   if (cell.hasMine){
     cell.div.classList.add('mine')
+    drawMine(cell.div)
     gameOver()
   } else {
     cell.div.innerText = cell.mineCount
@@ -180,3 +181,19 @@ function flag(event) {
 }
 
 reload.addEventListener('click', () => window.history.go(0))
+
+function drawMine(target){
+  const minebody = document.createElement('div')
+  minebody.classList.add('minebody')
+  const minespike1 = document.createElement('div')
+  minespike1.classList.add('spike')
+  minespike1.classList.add('spike1')
+  const minespike2 = document.createElement('div')
+  minespike2.classList.add('spike')
+  minespike2.classList.add('spike2')
+
+  minebody.appendChild(minespike1)
+  minebody.appendChild(minespike2)
+
+  target.appendChild(minebody)
+}

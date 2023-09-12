@@ -131,3 +131,31 @@ body.lose {
   inset:22% auto auto 20%;
   font-size: 1.2rem;
 }
+
+.minebody{
+  height:50%;
+  aspect-ratio: 1/1;
+  background: black;
+  border-radius: 50%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  overflow:visible;
+  position:relative
+}
+
+.spike {
+  aspect-ratio: 1/4;
+  height:150%;
+  background: black;
+  transform-origin: 50% 50%;
+  position:absolute;
+}
+
+.spike1 {
+  transform: rotate(-45deg)
+}
+
+.spike2 {
+  transform: rotate(45deg);
+}
