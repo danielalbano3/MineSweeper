@@ -179,4 +179,4 @@ function flag(event) {
   minecounter.innerText = minecount
 }
 
-reload.addEventListener('click', () => location.reload())
+reload.addEventListener('click', () => window.history.go(0))
